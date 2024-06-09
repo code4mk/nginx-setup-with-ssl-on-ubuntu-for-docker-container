@@ -35,6 +35,15 @@ echo "$nginx_config" > "$output_file"
 # Inform user about the created file
 echo "Nginx configuration file has been created at: $output_file"
 
+# Check if Let's Encrypt certificates exist for the domain
+if sudo certbot certificates | grep -q "$domain_name"; then
+    echo "Let's Encrypt certificates exist for $domain_name."
+else
+    echo "No Let's Encrypt certificates found for $domain_name."
+    echo "Please make sure to obtain SSL certificates for your domain using certbot."
+    exit 1
+fi
+
 # Prompt user if they want to set up Nginx
 read -p "Do you want to set up Nginx? (yes/no): " setup_nginx
 
