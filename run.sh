@@ -4,7 +4,8 @@
 echo "Available scripts:"
 echo "1. Docker deploy on Ubuntu"
 echo "2. Nginx install on Ubuntu"
-echo "3. Set SSL Nginx config"
+echo "3. Add SSL certificate"
+echo "4. Set SSL Nginx config"
 
 # Prompt user to select a script
 read -p "Enter the number of the script you want to run: " script_number
@@ -19,6 +20,10 @@ case $script_number in
         bash script/nginx-install-ubuntu.sh
         ;;
     3)
+        # Execute add-cert.sh
+        bash script/add-cert.sh
+        ;;
+    4)
         # Execute set-ssl-nginx-conf.sh
         bash script/set-ssl-nginx-conf.sh
         ;;
