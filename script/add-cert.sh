@@ -6,11 +6,12 @@ ip_address=$(curl -s ifconfig.me)
 # Display the IP address
 echo "The public IP address of this machine is: $ip_address"
 
+# Inform user to add an A record with the IP address
+echo "Before proceeding, please ensure you have added an A record with the IP address $ip_address for $domain_name in your DNS settings or add proper cname"
+
 # Prompt user for domain name
 read -p "Enter your domain name: " domain_name
 
-# Inform user to add an A record with the IP address
-echo "Before proceeding, please ensure you have added an A record with the IP address $ip_address for $domain_name in your DNS settings."
 
 # Check if DNS is working for the domain
 if ! nslookup "$domain_name" >/dev/null 2>&1; then
