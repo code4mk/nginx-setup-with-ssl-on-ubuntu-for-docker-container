@@ -1,7 +1,19 @@
 #!/bin/bash
 
+# Get the hostname
+hostname=$(hostname)
+
+# Get the IP address associated with the hostname
+ip_address=$(nslookup "$hostname" | awk '/^Address: / { print $2 }')
+
+# Display the IP address
+echo "The IP address of this machine is: $ip_address"
+
 # Prompt user for domain name
 read -p "Enter your domain name: " domain_name
+
+# Inform user to add an A record with the IP address
+echo "Before proceeding, please ensure you have added an A record with the IP address $ip_address for $domain_name in your DNS settings."
 
 # Check if DNS is working for the domain
 if ! nslookup "$domain_name" >/dev/null 2>&1; then
