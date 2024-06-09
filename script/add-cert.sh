@@ -3,6 +3,13 @@
 # Prompt user for domain name
 read -p "Enter your domain name: " domain_name
 
+# Check if DNS is working for the domain
+if ! nslookup "$domain_name" >/dev/null 2>&1; then
+    echo "DNS lookup failed for $domain_name."
+    echo "Please verify your DNS configuration and try again."
+    exit 1
+fi
+
 # Check if certbot and python3-certbot-nginx are installed
 if ! command -v certbot &> /dev/null || ! dpkg -l | grep -q python3-certbot-nginx; then
     echo "Installing Certbot and Certbot Nginx plugin..."
