@@ -35,7 +35,7 @@ echo "$nginx_config" > "$output_file"
 # Inform user about the created file
 echo "Nginx configuration file has been created at: $output_file"
 
-# Prompt user if they want to setup Nginx
+# Prompt user if they want to set up Nginx
 read -p "Do you want to set up Nginx? (yes/no): " setup_nginx
 
 if [ "$setup_nginx" = "yes" ]; then
@@ -43,9 +43,14 @@ if [ "$setup_nginx" = "yes" ]; then
     sudo cp "$output_file" "/etc/nginx/sites-available/"
     echo "Config file copied to /etc/nginx/sites-available/$domain_name"
 
-    # Create a symbolic link in sites-enabled
-    sudo ln -s "/etc/nginx/sites-available/$domain_name" "/etc/nginx/sites-enabled/"
-    echo "Symbolic link created in /etc/nginx/sites-enabled/"
+    # Check if symbolic link already exists
+    if [ -L "/etc/nginx/sites-enabled/$domain_name" ]; then
+        echo "Symbolic link already exists in /etc/nginx/sites-enabled/"
+    else
+        # Create a symbolic link in sites-enabled
+        sudo ln -s "/etc/nginx/sites-available/$domain_name" "/etc/nginx/sites-enabled/"
+        echo "Symbolic link created in /etc/nginx/sites-enabled/"
+    fi
 
     # Validate nginx configuration and reload nginx
     echo "Validating nginx configuration..."
