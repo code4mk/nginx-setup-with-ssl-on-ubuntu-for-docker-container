@@ -35,8 +35,8 @@ echo "$nginx_config" > "$output_file"
 # Inform user about the created file
 echo "Nginx configuration file has been created at: $output_file"
 
-# Check if Let's Encrypt certificates exist for the domain
-if sudo certbot certificates | grep -q "$domain_name"; then
+# Check if fullchain.pem exists for the domain
+if [ -f "/etc/letsencrypt/live/$domain_name/fullchain.pem" ]; then
     echo "Let's Encrypt certificates exist for $domain_name."
 else
     echo "No Let's Encrypt certificates found for $domain_name."
