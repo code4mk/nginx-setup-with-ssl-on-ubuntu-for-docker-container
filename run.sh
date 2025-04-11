@@ -2,7 +2,7 @@
 
 # List available scripts
 echo "Available scripts:"
-echo "1. Docker deploy on Ubuntu"
+echo "1. Docker install on Ubuntu"
 echo "2. Nginx install on Ubuntu"
 echo "3. Add SSL certificate"
 echo "4. Set SSL Nginx config"
@@ -12,8 +12,8 @@ read -p "Enter the number of the script you want to run: " script_number
 
 case $script_number in
     1)
-        # Execute docker-deploy-ubuntu.sh
-        bash script/docker-deploy-ubuntu.sh
+        # Execute docker-install-ubuntu.sh
+        bash script/docker-install-ubuntu.sh
         ;;
     2)
         # Execute nginx-install-ubuntu.sh
