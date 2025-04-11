@@ -92,15 +92,4 @@ sudo certbot renew --dry-run
 2. If Nginx configuration fails:
    - Check the Nginx error logs: `sudo tail -f /var/log/nginx/error.log`
    - Verify the configuration: `sudo nginx -t`
-```
 
-This README provides a comprehensive guide for users to understand and use your setup tools. You may want to add additional sections for:
-
-- Specific requirements for different Ubuntu versions
-- More detailed troubleshooting steps
-- Security considerations
-- Backup procedures
-- Contributing guidelines
-- License information
-
-Let me know if you'd like me to expand on any section or add more specific information!
